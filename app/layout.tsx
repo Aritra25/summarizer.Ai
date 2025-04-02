@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import { Source_Sans_3 as FontSas } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/common/header";
+import Footer from "@/components/common/footer";
+import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "@/components/ui/sonner";
+// import { Toaster } from "sonner";
+// import { Toaster } from "@/components/ui/toast";
 
 const fontSans = FontSas({
   variable: "--font-geist-sans",
@@ -24,8 +30,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${fontSans.variable} antialiased`}>{children}</body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={`${fontSans.variable} antialiased`}>
+          <div className="flex min-h-screen relative flex-col">
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
+          <Toaster richColors position="top-right" />
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
