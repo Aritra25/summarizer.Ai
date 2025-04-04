@@ -18,7 +18,7 @@
 //   hidden: { opacity: 0, x: -20 },
 //   visible: { opacity: 1, x: 0, transition: {
 //     type: 'spring',
-//     damping: 20, 
+//     damping: 20,
 //     stiffness: 100
 //   } },
 // };
@@ -176,8 +176,10 @@ export const pricingPlans = [
     ],
     paymentLink: isDev
       ? "https://buy.stripe.com/test_5kA4kh53E57x5Og5kk"
-      : "",
-    priceId: isDev ? "price_1R7EwY086TCWijXj1twoWCAE" : "",
+      : "https://buy.stripe.com/test_eVa5ol3ZA8jJ0tW6os",
+    priceId: isDev
+      ? "price_1R7EwY086TCWijXj1twoWCAE"
+      : "price_1R9cs5086TCWijXjvRXpgraw",
   },
   {
     id: "pro",
@@ -192,8 +194,10 @@ export const pricingPlans = [
     ],
     paymentLink: isDev
       ? "https://buy.stripe.com/test_14k041fIi1Vl90sbIJ"
-      : "",
-    priceId: isDev ? "price_1R7EyY086TCWijXjydvPjQQR" : "",
+      : "https://buy.stripe.com/test_3cseYV3ZA43tdgI9AD",
+    priceId: isDev
+      ? "price_1R7EyY086TCWijXjydvPjQQR"
+      : "price_1R9cs5086TCWijXjkAQazZSu",
   },
 ];
 
@@ -202,7 +206,9 @@ export default function PricingSection() {
     <section className="relative overflow-hidden" id="pricing">
       <div className="mx-auto py-12 lg:py-24 max-w-5xl sm:px-6 px-4 lg:px-8 lg:pt-12">
         <div className="flex items-center justify-center w-full pb-12">
-          <h2 className="text-xl font-bold uppercase mb-8 text-rose-500">Pricing</h2>
+          <h2 className="text-xl font-bold uppercase mb-8 text-rose-500">
+            Pricing
+          </h2>
         </div>
         <div className="flex relative flex-col justify-center lg:flex-row items-center lg:items-stretch gap-8">
           {pricingPlans.map((plan) => (
@@ -214,16 +220,30 @@ export default function PricingSection() {
   );
 }
 
-const PricingCard = ({ id, name, price, items, paymentLink, description }: PriceType) => {
+const PricingCard = ({
+  id,
+  name,
+  price,
+  items,
+  paymentLink,
+  description,
+}: PriceType) => {
   return (
-    <MotionDiv variants={ListVariants} whileHover={{ scale: 1.02 }}
-      className="relative w-full max-w-lg hover:scale-105 hover:transition-all duration-300">
-      <div className={cn(
+    <MotionDiv
+      variants={ListVariants}
+      whileHover={{ scale: 1.02 }}
+      className="relative w-full max-w-lg hover:scale-105 hover:transition-all duration-300"
+    >
+      <div
+        className={cn(
           "relative flex flex-col h-full gap-4 lg:gap-8 z-10 p-8 border-[1px] rounded-xl border-gray-500/20",
           id.toLowerCase() === "pro" && "border-rose-500 gap-5 border-2"
         )}
       >
-        <MotionDiv variants={ListVariants} className="flex justify-between items-center gap-4">
+        <MotionDiv
+          variants={ListVariants}
+          className="flex justify-between items-center gap-4"
+        >
           <div>
             <p className="text-lg lg:text-xl font-bold capitalize">{name}</p>
             <p className="text-base-content/80 mt-2">{description}</p>
@@ -236,7 +256,10 @@ const PricingCard = ({ id, name, price, items, paymentLink, description }: Price
             <p className="text-xs">/month</p>
           </div>
         </MotionDiv>
-        <MotionDiv variants={ListVariants} className="space-y-2.5 leading-relaxed text-base flex-1">
+        <MotionDiv
+          variants={ListVariants}
+          className="space-y-2.5 leading-relaxed text-base flex-1"
+        >
           {items.map((item) => (
             <li key={item} className="flex items-center gap-2">
               <CheckIcon size={18} />
@@ -244,11 +267,17 @@ const PricingCard = ({ id, name, price, items, paymentLink, description }: Price
             </li>
           ))}
         </MotionDiv>
-        <MotionDiv variants={ListVariants} className="space-y-2 w-full justify-center">
-          <Link href={paymentLink}
+        <MotionDiv
+          variants={ListVariants}
+          className="space-y-2 w-full justify-center"
+        >
+          <Link
+            href={paymentLink}
             className={cn(
               "w-full rounded-full flex items-center justify-center gap-2 bg-gradient-to-r from-rose-800 to-rose-500 hover:from-rose-500 hover:to-rose-800 text-white py-2 border-2",
-              id.toLowerCase() === "pro" ? "border-rose-900" : "border-rose-100 from-rose-400 to-rose-500"
+              id.toLowerCase() === "pro"
+                ? "border-rose-900"
+                : "border-rose-100 from-rose-400 to-rose-500"
             )}
           >
             Buy Now <ArrowRight size={18} />

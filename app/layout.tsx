@@ -5,6 +5,7 @@ import Header from "@/components/common/header";
 import Footer from "@/components/common/footer";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/sonner";
+import { ORIGIN_URL } from "@/utils/helpers";
 // import { Toaster } from "sonner";
 // import { Toaster } from "@/components/ui/toast";
 
@@ -22,6 +23,10 @@ const fontSans = FontSas({
 export const metadata: Metadata = {
   title: "Summarizerr",
   description: "Summarizerr is an app for summarizing PDF documents",
+  metadataBase: new URL(ORIGIN_URL),
+  alternates: {
+    canonical: ORIGIN_URL,
+  },
 };
 
 export default function RootLayout({
